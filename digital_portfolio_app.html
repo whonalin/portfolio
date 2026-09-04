@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aashutosh Kumar Nalin | Digital Portfolio & Academic Showcase</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 360px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 340px;
+            }
+        }
+        @media print {
+            header, footer, button { display: none !important; }
+            body { background-color: white !important; }
+        }
+    </style>
+</head>
+<!-- Chosen Palette: Plain Minimalist Light Slate (#FFFFFF background, #F8FAFC section blocks, #0F172A primary text, clean crisp border lines for clear document screenshot submission). -->
+<!-- Application Structure Plan: Structured for academic submission and screenshot evaluation into 6 key sections: (1) Header & Contact Bar, (2) Clean Academic Hero & High-Level Summary Stats, (3) Professional Overview & Academic Standing, (4) Skill Competency Matrix & Interactive Bar Chart, (5) Interactive Projects Showcase (P-T-R-L Framework), (6) Verified Credentials & Certifications Showcase (featuring iamneo 150-hr and Infosys Springboard certifications with full verification viewer modal), and (7) Coding Profile Metrics & Direct Contact Info. -->
+<!-- Visualization & Content Choices: 1. Plain UI -> Goal: Crisp screenshot capture for submission -> White & Light Gray monochrome palette with distinct borders. 2. Verified Certificates -> Goal: Credential proof -> Interactive Modal & Detailed HTML Cards with exact dates, C.No., and course durations. 3. Chart.js -> Goal: Visual skill distribution -> Clean minimal black/slate horizontal bar and doughnut charts (NO SVG / NO Mermaid JS). -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-slate-900 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-white border-b border-slate-300 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-md bg-slate-900 text-white font-bold flex items-center justify-center text-sm">
+                        AK
+                    </div>
+                    <div>
+                        <span class="font-extrabold text-slate-900 text-base leading-tight block">Aashutosh Kumar Nalin</span>
+                        <span class="text-xs text-slate-600 font-medium">B.Tech CSE Student | Reg: LPU</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav Tabs -->
+                <nav class="hidden md:flex items-center space-x-1">
+                    <button onclick="scrollToSection('about')" class="px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100 rounded transition-colors">About</button>
+                    <button onclick="scrollToSection('skills')" class="px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100 rounded transition-colors">Skills</button>
+                    <button onclick="scrollToSection('projects')" class="px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100 rounded transition-colors">Projects (P-T-R-L)</button>
+                    <button onclick="scrollToSection('certifications')" class="px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100 rounded transition-colors">Certifications</button>
+                    <button onclick="scrollToSection('analytics')" class="px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100 rounded transition-colors">Coding Profile</button>
+                    <button onclick="scrollToSection('contact')" class="ml-2 px-3 py-1.5 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded transition-colors">Contact</button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="p-2 text-slate-800 font-bold focus:outline-none">
+                        &#9776;
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-300 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="scrollToSection('about'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-slate-800 font-medium rounded hover:bg-slate-100 text-xs">About</button>
+            <button onclick="scrollToSection('skills'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-slate-800 font-medium rounded hover:bg-slate-100 text-xs">Skills</button>
+            <button onclick="scrollToSection('projects'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-slate-800 font-medium rounded hover:bg-slate-100 text-xs">Projects (P-T-R-L)</button>
+            <button onclick="scrollToSection('certifications'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-slate-800 font-medium rounded hover:bg-slate-100 text-xs">Certifications</button>
+            <button onclick="scrollToSection('analytics'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-slate-800 font-medium rounded hover:bg-slate-100 text-xs">Coding Profile</button>
+            <button onclick="scrollToSection('contact'); toggleMobileMenu()" class="block w-full text-center px-3 py-2 bg-slate-900 text-white font-bold rounded text-xs">Contact</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- 1. HERO SECTION (Plain Light Theme for Clean Screenshots) -->
+        <section id="hero" class="bg-white border border-slate-300 rounded-xl p-6 sm:p-10 shadow-sm space-y-6">
+            <div class="space-y-4">
+                <div class="inline-block px-3 py-1 bg-slate-100 border border-slate-300 rounded text-slate-800 text-xs font-bold uppercase tracking-wider">
+                    Academic Portfolio & Coursework Submission Showcase
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Aashutosh Kumar Nalin
+                </h1>
+                <p class="text-slate-700 text-base sm:text-lg max-w-3xl leading-relaxed">
+                    Second-year B.Tech Computer Science and Engineering Student at Lovely Professional University (LPU). Specialized in Computer Vision, Machine Learning workflows, and Embedded Microcontroller Systems.
+                </p>
+            </div>
+
+            <!-- Key Metrics Bar -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+                <div class="bg-slate-50 border border-slate-300 p-3 rounded-lg text-center">
+                    <div class="text-xl font-bold text-slate-900">7.44</div>
+                    <div class="text-xs text-slate-600 font-medium">Current CGPA (LPU)</div>
+                </div>
+                <div class="bg-slate-50 border border-slate-300 p-3 rounded-lg text-center">
+                    <div class="text-xl font-bold text-slate-900">4 Verified</div>
+                    <div class="text-xs text-slate-600 font-medium">Industry Certifications</div>
+                </div>
+                <div class="bg-slate-50 border border-slate-300 p-3 rounded-lg text-center">
+                    <div class="text-xl font-bold text-slate-900">200+</div>
+                    <div class="text-xs text-slate-600 font-medium">DSA Problems Solved</div>
+                </div>
+                <div class="bg-slate-50 border border-slate-300 p-3 rounded-lg text-center">
+                    <div class="text-xl font-bold text-slate-900">150 Hours</div>
+                    <div class="text-xs text-slate-600 font-medium">Computer Programming (neo)</div>
+                </div>
+            </div>
+
+            <!-- Quick Action Links -->
+            <div class="flex flex-wrap gap-3 pt-2">
+                <button onclick="scrollToSection('certifications')" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded border border-slate-900 transition-colors">
+                    &#127894; View Certificates (4)
+                </button>
+                <button onclick="scrollToSection('projects')" class="px-4 py-2 bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs rounded border border-slate-400 transition-colors">
+                    &#128188; View Projects
+                </button>
+                <a href="https://github.com/whonalin" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs rounded border border-slate-400 transition-colors">
+                    &#128033; GitHub Profile
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT ME SECTION -->
+        <section id="about" class="bg-white border border-slate-300 rounded-xl p-6 sm:p-8 shadow-sm space-y-6">
+            <div class="border-b border-slate-200 pb-3">
+                <h2 class="text-2xl font-bold text-slate-900">Academic & Professional Background</h2>
+                <p class="text-xs text-slate-600 mt-0.5">Summary of academic standing and engineering focus areas.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 space-y-3 text-slate-700 text-sm leading-relaxed">
+                    <p>
+                        I am currently pursuing a <strong>Bachelor of Technology (B.Tech) in Computer Science and Engineering</strong> at Lovely Professional University, Phagwara, Punjab. My technical focus centers on computer vision pipelines, sequence models, low-level firmware development, and algorithm design.
+                    </p>
+                    <p>
+                        I have completed structured practical training including a <strong>150-hour intensive Computer Programming course</strong> with iamneo / neo colab, as well as core software credentials from Infosys Springboard in Python, C Programming, and Cybersecurity.
+                    </p>
+                    <div class="pt-2">
+                        <span class="text-xs font-bold text-slate-900 uppercase block mb-2">Core Competencies:</span>
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                            <span class="px-2.5 py-1 bg-slate-100 border border-slate-300 rounded text-slate-800">C++ & Python Data Structures</span>
+                            <span class="px-2.5 py-1 bg-slate-100 border border-slate-300 rounded text-slate-800">CNN Image Classification</span>
+                            <span class="px-2.5 py-1 bg-slate-100 border border-slate-300 rounded text-slate-800">Seq2Seq OCR Architectures</span>
+                            <span class="px-2.5 py-1 bg-slate-100 border border-slate-300 rounded text-slate-800">Arduino Microcontrollers & Sensors</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Details Table -->
+                <div class="bg-slate-50 border border-slate-300 p-4 rounded-lg space-y-3">
+                    <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2">Academic Record</h3>
+                    <table class="w-full text-xs text-left text-slate-700">
+                        <tbody>
+                            <tr class="border-b border-slate-200">
+                                <td class="py-1.5 font-medium text-slate-500">Degree:</td>
+                                <td class="py-1.5 font-bold text-slate-900">B.Tech CSE</td>
+                            </tr>
+                            <tr class="border-b border-slate-200">
+                                <td class="py-1.5 font-medium text-slate-500">Institution:</td>
+                                <td class="py-1.5 font-bold text-slate-900">Lovely Professional Univ.</td>
+                            </tr>
+                            <tr class="border-b border-slate-200">
+                                <td class="py-1.5 font-medium text-slate-500">Current CGPA:</td>
+                                <td class="py-1.5 font-bold text-slate-900">7.44 / 10.0</td>
+                            </tr>
+                            <tr class="border-b border-slate-200">
+                                <td class="py-1.5 font-medium text-slate-500">Class XII:</td>
+                                <td class="py-1.5 font-bold text-slate-900">70% (Lyceum Int.)</td>
+                            </tr>
+                            <tr>
+                                <td class="py-1.5 font-medium text-slate-500">Class X:</td>
+                                <td class="py-1.5 font-bold text-slate-900">92% (DAV Public)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. VERIFIED CREDENTIALS & CERTIFICATIONS SECTION (UPDATED WITH REAL CERTIFICATES) -->
+        <section id="certifications" class="bg-white border border-slate-300 rounded-xl p-6 sm:p-8 shadow-sm space-y-6">
+            <div class="border-b border-slate-200 pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Verified Certifications & Credentials</h2>
+                    <p class="text-xs text-slate-600 mt-0.5">Official course completion certificates with issue dates and verification credentials.</p>
+                </div>
+                <span class="text-xs font-bold text-slate-700 bg-slate-100 border border-slate-300 px-2.5 py-1 rounded">
+                    4 Verified Certificates Included
+                </span>
+            </div>
+
+            <!-- Certificates Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- 1. iamneo / neo colab Certificate -->
+                <div class="border border-slate-300 rounded-lg p-5 bg-slate-50 hover:bg-white transition-colors space-y-3 relative flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-start">
+                            <span class="px-2 py-0.5 bg-slate-900 text-white font-extrabold text-[10px] rounded uppercase tracking-wider">
+                                iamneo / neo colab (NIIT Venture)
+                            </span>
+                            <span class="text-xs font-bold text-slate-600">Issued: 21-May-2026</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900">Computer Programming (Certificate of Appreciation)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Demonstrated strong commitment, consistency, and excellence throughout the course with a total duration of <strong>150 Hours</strong> (18-Jan-2026 to 20-May-2026).
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs">
+                        <span class="font-mono text-[11px] text-slate-500">C.No: 13AH0cl6Ae0Df3Dg3Bh1</span>
+                        <button onclick="openCertModal('neo-cp')" class="font-bold text-slate-900 underline hover:text-slate-600">
+                            View Certificate Details &#8594;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Infosys Springboard - Python Fundamentals -->
+                <div class="border border-slate-300 rounded-lg p-5 bg-slate-50 hover:bg-white transition-colors space-y-3 relative flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-start">
+                            <span class="px-2 py-0.5 bg-slate-200 border border-slate-300 text-slate-800 font-extrabold text-[10px] rounded uppercase tracking-wider">
+                                Infosys Springboard
+                            </span>
+                            <span class="text-xs font-bold text-slate-600">Issued: July 22, 2026</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900">Python Fundamentals (Course Completion)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Comprehensive certification covering core Python syntax, object-oriented programming concepts, dynamic data structures, and script execution workflows.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs">
+                        <span class="font-medium text-slate-500">Completed: July 21, 2026</span>
+                        <button onclick="openCertModal('infosys-python')" class="font-bold text-slate-900 underline hover:text-slate-600">
+                            View Certificate Details &#8594;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. Infosys Springboard - Programming in C -->
+                <div class="border border-slate-300 rounded-lg p-5 bg-slate-50 hover:bg-white transition-colors space-y-3 relative flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-start">
+                            <span class="px-2 py-0.5 bg-slate-200 border border-slate-300 text-slate-800 font-extrabold text-[10px] rounded uppercase tracking-wider">
+                                Infosys Springboard
+                            </span>
+                            <span class="text-xs font-bold text-slate-600">Issued: Feb 7, 2026</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900">Programming in C (Course Completion)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Verification of fundamental procedural programming, low-level memory handling, pointers, array operations, and standard C library routines.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs">
+                        <span class="font-medium text-slate-500">Completed: February 7, 2026</span>
+                        <button onclick="openCertModal('infosys-c')" class="font-bold text-slate-900 underline hover:text-slate-600">
+                            View Certificate Details &#8594;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4. Infosys Springboard - Introduction to Cyber Security -->
+                <div class="border border-slate-300 rounded-lg p-5 bg-slate-50 hover:bg-white transition-colors space-y-3 relative flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-start">
+                            <span class="px-2 py-0.5 bg-slate-200 border border-slate-300 text-slate-800 font-extrabold text-[10px] rounded uppercase tracking-wider">
+                                Infosys Springboard
+                            </span>
+                            <span class="text-xs font-bold text-slate-600">Issued: March 13, 2026</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900">Introduction to Cyber Security</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Structured training covering network security fundamentals, threat vectors, system defense principles, and basic cryptographic protocols.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs">
+                        <span class="font-medium text-slate-500">Completed: March 13, 2026</span>
+                        <button onclick="openCertModal('infosys-cyber')" class="font-bold text-slate-900 underline hover:text-slate-600">
+                            View Certificate Details &#8594;
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. TECHNICAL SKILLS SECTION -->
+        <section id="skills" class="bg-white border border-slate-300 rounded-xl p-6 sm:p-8 shadow-sm space-y-6">
+            <div class="border-b border-slate-200 pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Technical Skill Breakdown</h2>
+                    <p class="text-xs text-slate-600 mt-0.5">Categorized view of programming languages, machine learning frameworks, and embedded tools.</p>
+                </div>
+                <div id="skillFilterGroup" class="flex flex-wrap gap-1.5">
+                    <button onclick="filterSkills('all')" class="skill-filter-btn px-2.5 py-1 text-xs font-bold rounded bg-slate-900 text-white">All</button>
+                    <button onclick="filterSkills('lang')" class="skill-filter-btn px-2.5 py-1 text-xs font-bold rounded bg-slate-100 border border-slate-300 text-slate-700 hover:bg-slate-200">Languages</button>
+                    <button onclick="filterSkills('ml')" class="skill-filter-btn px-2.5 py-1 text-xs font-bold rounded bg-slate-100 border border-slate-300 text-slate-700 hover:bg-slate-200">ML & AI</button>
+                    <button onclick="filterSkills('embed')" class="skill-filter-btn px-2.5 py-1 text-xs font-bold rounded bg-slate-100 border border-slate-300 text-slate-700 hover:bg-slate-200">Embedded</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <!-- Grid of Skill Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="skillsGrid">
+                    <!-- Cards dynamically populated -->
+                </div>
+
+                <!-- Skill Chart -->
+                <div class="bg-slate-50 border border-slate-300 p-4 rounded-lg space-y-2">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Competency Rating Visual</h3>
+                        <span class="text-[11px] text-slate-500 font-medium">Self-Evaluated Rating (%)</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. PROJECTS SECTION (P-T-R-L FRAMEWORK) -->
+        <section id="projects" class="bg-white border border-slate-300 rounded-xl p-6 sm:p-8 shadow-sm space-y-6">
+            <div class="border-b border-slate-200 pb-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Featured Technical Projects</h2>
+                    <p class="text-xs text-slate-600 mt-0.5">Structured using the <strong>Problem (P) &#8594; Technology (T) &#8594; Result (R) &#8594; Learning (L)</strong> engineering framework.</p>
+                </div>
+                <div class="inline-flex rounded border border-slate-300 bg-slate-100 p-0.5">
+                    <button onclick="filterProjects('all')" class="proj-tab px-3 py-1 text-xs font-bold rounded bg-white text-slate-900 shadow-sm">All</button>
+                    <button onclick="filterProjects('ml')" class="proj-tab px-3 py-1 text-xs font-bold rounded text-slate-700 hover:text-slate-900">Machine Learning</button>
+                    <button onclick="filterProjects('hardware')" class="proj-tab px-3 py-1 text-xs font-bold rounded text-slate-700 hover:text-slate-900">Embedded Robotics</button>
+                </div>
+            </div>
+
+            <!-- Project Cards Container -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="projectsContainer">
+                <!-- Dynamically generated -->
+            </div>
+        </section>
+
+        <!-- 6. CODING PROFILE & ANALYTICS -->
+        <section id="analytics" class="bg-white border border-slate-300 rounded-xl p-6 sm:p-8 shadow-sm space-y-6">
+            <div class="border-b border-slate-200 pb-3">
+                <h2 class="text-2xl font-bold text-slate-900">Coding Profile & Milestones</h2>
+                <p class="text-xs text-slate-600 mt-0.5">Data structure problem-solving statistics and continuous practice record.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <!-- Doughnut Chart -->
+                <div class="bg-slate-50 border border-slate-300 p-4 rounded-lg space-y-2">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">200+ Solved Problems Categorization</h3>
+                        <span class="text-[11px] font-bold text-slate-700">C++ / Python</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="codingChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Academic Milestones Checklist -->
+                <div class="space-y-4 text-xs text-slate-700">
+                    <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Key Portfolio Highlights</h3>
+                    
+                    <div class="p-3 bg-slate-50 border border-slate-300 rounded-lg space-y-1">
+                        <h4 class="font-bold text-slate-900 text-xs">&#10003; 150-Hour Computer Programming Certification</h4>
+                        <p class="text-slate-600">Completed intensive hands-on programming training with iamneo / neo colab from Jan 18 to May 20, 2026.</p>
+                    </div>
+
+                    <div class="p-3 bg-slate-50 border border-slate-300 rounded-lg space-y-1">
+                        <h4 class="font-bold text-slate-900 text-xs">&#10003; 200+ Competitive Algorithmic Challenges</h4>
+                        <p class="text-slate-600">Demonstrated proficiency in arrays, dynamic programming, binary search, and trees on competitive platforms.</p>
+                    </div>
+
+                    <div class="p-3 bg-slate-50 border border-slate-300 rounded-lg space-y-1">
+                        <h4 class="font-bold text-slate-900 text-xs">&#10003; Open Source ML Repositories</h4>
+                        <p class="text-slate-600">Published reproducible Jupyter Notebooks for CNN image classification and Seq2Seq OCR model pipelines on GitHub.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. CONTACT SECTION -->
+        <section id="contact" class="bg-white border border-slate-300 rounded-xl p-6 sm:p-8 shadow-sm space-y-6">
+            <div class="border-b border-slate-200 pb-3">
+                <h2 class="text-2xl font-bold text-slate-900">Contact & Submission Details</h2>
+                <p class="text-xs text-slate-600 mt-0.5">Reach out for academic verification or software project collaborations.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Direct Details -->
+                <div class="space-y-3 text-xs">
+                    <div class="p-4 border border-slate-300 rounded-lg bg-slate-50 space-y-1">
+                        <span class="text-slate-500 font-semibold block">Full Name</span>
+                        <span class="font-bold text-slate-900 text-sm block">Aashutosh Kumar Nalin</span>
+                    </div>
+                    <div class="p-4 border border-slate-300 rounded-lg bg-slate-50 space-y-1">
+                        <span class="text-slate-500 font-semibold block">Email Address</span>
+                        <a href="mailto:nalinwho@gmail.com" class="font-bold text-slate-900 text-sm block underline">nalinwho@gmail.com</a>
+                    </div>
+                    <div class="p-4 border border-slate-300 rounded-lg bg-slate-50 space-y-1">
+                        <span class="text-slate-500 font-semibold block">GitHub Profile</span>
+                        <a href="https://github.com/whonalin" target="_blank" rel="noopener" class="font-bold text-slate-900 text-sm block underline">github.com/whonalin</a>
+                    </div>
+                    <div class="p-4 border border-slate-300 rounded-lg bg-slate-50 space-y-1">
+                        <span class="text-slate-500 font-semibold block">LinkedIn Profile</span>
+                        <a href="https://linkedin.com/in/ak-nalin-0b249a384" target="_blank" rel="noopener" class="font-bold text-slate-900 text-sm block underline">linkedin.com/in/ak-nalin-0b249a384</a>
+                    </div>
+                </div>
+
+                <!-- Simple Contact Form -->
+                <form onsubmit="handleFormSubmit(event)" class="border border-slate-300 p-5 rounded-lg bg-slate-50 space-y-3">
+                    <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Send Quick Note</h3>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-700 mb-1">Your Name</label>
+                        <input type="text" required id="senderName" placeholder="Evaluator / Recruiter Name" class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded text-xs text-slate-900 focus:outline-none focus:border-slate-800">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-700 mb-1">Your Email</label>
+                        <input type="email" required id="senderEmail" placeholder="evaluator@lpu.in" class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded text-xs text-slate-900 focus:outline-none focus:border-slate-800">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-700 mb-1">Message</label>
+                        <textarea required id="senderMsg" rows="3" placeholder="Enter message here..." class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded text-xs text-slate-900 focus:outline-none focus:border-slate-800"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded text-xs transition-colors">
+                        Submit Note
+                    </button>
+                    <p id="formFeedback" class="text-xs text-emerald-700 font-bold text-center hidden">Message recorded! Thank you.</p>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Project Detail Modal -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white border border-slate-400 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-xl p-6 space-y-4 relative">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-slate-500 hover:text-slate-900 text-xl font-bold leading-none">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Certificate Verification Modal -->
+    <div id="certModal" class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white border border-slate-400 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-xl p-6 space-y-4 relative">
+            <button onclick="closeCertModal()" class="absolute top-4 right-4 text-slate-500 hover:text-slate-900 text-xl font-bold leading-none">&times;</button>
+            <div id="certModalContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-300 py-6 text-slate-600 text-xs">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-1">
+            <p class="font-semibold text-slate-800">&copy; 2026 Aashutosh Kumar Nalin. Single-Page Academic Portfolio Showcase.</p>
+            <p>Lovely Professional University | Department of Computer Science and Engineering</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data & Logic -->
+    <script>
+        // Certificates Data Store (Extracted from User Images)
+        const certsData = {
+            'neo-cp': {
+                title: 'Certificate of Appreciation — Computer Programming',
+                issuer: 'iamneo / neo colab (An NIIT Venture) & Lovely Professional University',
+                recipient: 'Aashutosh Kumar Nalin',
+                duration: '150 Hours',
+                dates: '18-Jan-2026 to 20-May-2026',
+                issueDate: '21-May-2026',
+                signatory: 'SENTHILKUMAR TP',
+                certNo: '13AH0cl6Ae0Df3Dg3Bh1',
+                desc: 'Awarded for successfully completing the Computer Programming course demonstrating strong commitment, consistency, and excellence throughout the course with a duration of 150 Hours.'
+            },
+            'infosys-python': {
+                title: 'Course Completion Certificate — Python Fundamentals',
+                issuer: 'Infosys Springboard (Infosys Limited)',
+                recipient: 'AASHUTOSH KUMAR NALIN',
+                duration: 'Self-Paced Intensive Course',
+                dates: 'Completed on July 21, 2026',
+                issueDate: 'Wednesday, July 22, 2026',
+                signatory: 'Satheesha B. Nanjappa (Senior Vice President and Head)',
+                verifyUrl: 'https://verify.onwingspan.com',
+                desc: 'Awarded for successfully completing the Python Fundamentals course on Infosys Springboard platform.'
+            },
+            'infosys-c': {
+                title: 'Course Completion Certificate — Programming in C',
+                issuer: 'Infosys Springboard (Infosys Limited)',
+                recipient: 'AASHUTOSH KUMAR NALIN',
+                duration: 'Self-Paced Intensive Course',
+                dates: 'Completed on February 7, 2026',
+                issueDate: 'Saturday, February 7, 2026',
+                signatory: 'Satheesha B. Nanjappa (Senior Vice President and Head)',
+                verifyUrl: 'https://verify.onwingspan.com',
+                desc: 'Awarded for successfully completing the Programming in C course on Infosys Springboard platform.'
+            },
+            'infosys-cyber': {
+                title: 'Course Completion Certificate — Introduction to Cyber Security',
+                issuer: 'Infosys Springboard (Infosys Limited)',
+                recipient: 'AASHUTOSH KUMAR NALIN',
+                duration: 'Self-Paced Intensive Course',
+                dates: 'Completed on March 13, 2026',
+                issueDate: 'Friday, March 13, 2026',
+                signatory: 'Satheesha B. Nanjappa (Senior Vice President and Head)',
+                verifyUrl: 'https://verify.onwingspan.com',
+                desc: 'Awarded for successfully completing the Introduction to Cyber Security course on Infosys Springboard platform.'
+            }
+        };
+
+        // Skills Data
+        const skillsData = [
+            { name: "C++ Language", category: "lang", level: "Proficient", score: 90, desc: "Algorithms, competitive coding & OOP structure." },
+            { name: "Python Language", category: "lang", level: "Proficient", score: 88, desc: "Data pipelines, PyTorch & TensorFlow modeling." },
+            { name: "C Programming", category: "lang", level: "Proficient", score: 82, desc: "Low-level memory pointers & embedded code." },
+            { name: "TensorFlow & Keras", category: "ml", level: "Intermediate", score: 80, desc: "CNN image classification & evaluation." },
+            { name: "PyTorch & Torchvision", category: "ml", level: "Intermediate", score: 78, desc: "Seq2Seq OCR models & custom dataset batching." },
+            { name: "Arduino Firmware", category: "embed", level: "Intermediate", score: 82, desc: "Ultrasonic sensors & motor driver integration." }
+        ];
+
+        // Projects Data
+        const projectsData = [
+            {
+                id: "intel-cv",
+                title: "Intel Image Classification Engine",
+                category: "ml",
+                timeline: "Feb 2026 – Jun 2026",
+                tech: "Python, TensorFlow, NumPy, Matplotlib",
+                summary: "Convolutional Neural Network (CNN) trained on natural scene image dataset to classify 6 distinct terrain categories.",
+                github: "https://github.com/whonalin",
+                ptrl: {
+                    problem: "Manual natural-scene classification is prone to human error and sluggish when processing large image feeds across overlapping environmental features.",
+                    tech: "Python, TensorFlow/Keras, NumPy, Matplotlib, Convolutional Neural Networks (CNNs).",
+                    result: "Built a robust CNN model trained on the Intel Image Classification dataset, achieving accurate multi-class predictions across 6 categories (Buildings, Forest, Glacier, Mountain, Sea, Street).",
+                    learning: "Mastered convolutional feature extraction, loss curve debugging, batch processing, and data augmentation techniques to prevent overfitting."
+                }
+            },
+            {
+                id: "seq2seq-ocr",
+                title: "Basic OCR Engine for Seq2Seq Digit Recognition",
+                category: "ml",
+                timeline: "Jun 2025 – Aug 2025",
+                tech: "Python, PyTorch, Torchvision, EMNIST Dataset",
+                summary: "Sequence-to-Sequence neural architecture trained on handwritten EMNIST digit streams for continuous OCR transcription.",
+                github: "https://github.com/whonalin",
+                ptrl: {
+                    problem: "Standard single-character digit classifiers fail when recognizing variable-length handwritten digit sequences presented in continuous image streams.",
+                    tech: "Python, PyTorch, Torchvision, EMNIST Dataset, NumPy.",
+                    result: "Engineered an end-to-end Sequence-to-Sequence (Seq2Seq) neural OCR model that ingests multi-digit handwritten sequences and outputs continuous transcribed text predictions.",
+                    learning: "Gained hands-on expertise in custom PyTorch dataset batching, sequence loss evaluation, recurrent neural structures, and inference metrics."
+                }
+            },
+            {
+                id: "arduino-car",
+                title: "Arduino Obstacle-Avoidance Autonomous Car",
+                category: "hardware",
+                timeline: "Aug 2025 – Dec 2025",
+                tech: "Arduino Uno, C/C++, Ultrasonic Sensors, Motor Drivers",
+                summary: "Autonomous mobile vehicle with dynamic servo-mounted 180° ultrasonic obstacle scanning and real-time path clearance evaluation.",
+                github: "https://github.com/whonalin",
+                ptrl: {
+                    problem: "Autonomous navigation in unknown indoor spaces requires dynamic, low-latency obstacle detection without expensive LiDAR sensors.",
+                    tech: "Arduino Uno Microcontroller, Embedded C/C++, Ultrasonic Sensor, Micro-Servo, L298N Motor Drivers.",
+                    result: "Designed and built a physical 4-wheel robotic prototype that scans 180-degree multi-angle clearances using a servo-driven ultrasonic sensor and executes real-time collision-free navigation logic.",
+                    learning: "Acquired firmware development experience in C/C++, sensory threshold calibration, circuit wiring, and collaborative team engineering."
+                }
+            }
+        ];
+
+        // Smooth Scroll Helper
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if(el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Render Certificate Modal Details
+        function openCertModal(key) {
+            const item = certsData[key];
+            if(!item) return;
+
+            const container = document.getElementById('certModalContent');
+            container.innerHTML = `
+                <div class="space-y-4 text-xs text-slate-800">
+                    <div class="border-b border-slate-300 pb-3">
+                        <span class="px-2 py-0.5 bg-slate-900 text-white font-bold text-[10px] rounded uppercase">${item.issuer}</span>
+                        <h2 class="text-xl font-extrabold text-slate-900 mt-2">${item.title}</h2>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-300 p-4 rounded-lg space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <span class="text-slate-500 block">Awarded To:</span>
+                                <strong class="text-slate-900 text-sm">${item.recipient}</strong>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 block">Issued On:</span>
+                                <strong class="text-slate-900 text-sm">${item.issueDate}</strong>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-200">
+                            <div>
+                                <span class="text-slate-500 block">Course Timeline / Duration:</span>
+                                <strong class="text-slate-800">${item.dates} (${item.duration})</strong>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 block">${item.certNo ? 'Certificate No:' : 'Authorized Signatory:'}</span>
+                                <strong class="text-slate-800">${item.certNo || item.signatory}</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-700 leading-relaxed border-l-2 border-slate-800 pl-3 italic">
+                        "${item.desc}"
+                    </p>
+
+                    ${item.verifyUrl ? `
+                    <div class="pt-2">
+                        <span class="text-slate-500 block mb-1">Online Credential Verification URL:</span>
+                        <a href="${item.verifyUrl}" target="_blank" class="text-slate-900 font-bold underline">${item.verifyUrl}</a>
+                    </div>
+                    ` : ''}
+
+                    <div class="pt-4 flex justify-end border-t border-slate-200">
+                        <button onclick="closeCertModal()" class="px-4 py-1.5 bg-slate-900 text-white font-bold rounded text-xs">
+                            Close Preview
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.getElementById('certModal').classList.remove('hidden');
+        }
+
+        function closeCertModal() {
+            document.getElementById('certModal').classList.add('hidden');
+        }
+
+        // Render Skills Grid
+        function renderSkills(filter = 'all') {
+            const container = document.getElementById('skillsGrid');
+            container.innerHTML = '';
+            
+            const filtered = filter === 'all' 
+                ? skillsData 
+                : skillsData.filter(s => s.category === filter);
+
+            filtered.forEach(s => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-50 p-3.5 rounded-lg border border-slate-300 space-y-1.5";
+                card.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-slate-900 text-xs">${s.name}</h4>
+                        <span class="text-[10px] px-1.5 py-0.5 rounded bg-white border border-slate-300 font-semibold text-slate-700">${s.level}</span>
+                    </div>
+                    <p class="text-[11px] text-slate-600">${s.desc}</p>
+                    <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-slate-800 h-1.5 rounded-full" style="width: ${s.score}%"></div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterSkills(cat) {
+            const btns = document.querySelectorAll('.skill-filter-btn');
+            btns.forEach(b => {
+                b.className = "skill-filter-btn px-2.5 py-1 text-xs font-bold rounded bg-slate-100 border border-slate-300 text-slate-700 hover:bg-slate-200";
+            });
+            event.target.className = "skill-filter-btn px-2.5 py-1 text-xs font-bold rounded bg-slate-900 text-white";
+            renderSkills(cat);
+        }
+
+        // Render Projects Grid
+        function renderProjects(filter = 'all') {
+            const container = document.getElementById('projectsContainer');
+            container.innerHTML = '';
+
+            const filtered = filter === 'all' 
+                ? projectsData 
+                : projectsData.filter(p => p.category === filter);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-50 border border-slate-300 rounded-lg p-5 flex flex-col justify-between space-y-3";
+                card.innerHTML = `
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-white border border-slate-300 rounded uppercase text-slate-800">${p.category}</span>
+                            <span class="text-[11px] text-slate-500 font-medium">${p.timeline}</span>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-900">${p.title}</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">${p.summary}</p>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between">
+                        <button onclick="openProjectModal('${p.id}')" class="text-xs font-bold text-slate-900 underline hover:text-slate-600">
+                            PTRL Details &#8594;
+                        </button>
+                        <a href="${p.github}" target="_blank" class="text-xs font-semibold text-slate-600 hover:text-slate-900">GitHub</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterProjects(cat) {
+            const tabs = document.querySelectorAll('.proj-tab');
+            tabs.forEach(t => {
+                t.className = "proj-tab px-3 py-1 text-xs font-bold rounded text-slate-700 hover:text-slate-900";
+            });
+            event.target.className = "proj-tab px-3 py-1 text-xs font-bold rounded bg-white text-slate-900 shadow-sm";
+            renderProjects(cat);
+        }
+
+        // Project Modal Logic
+        function openProjectModal(id) {
+            const project = projectsData.find(p => p.id === id);
+            if(!project) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="space-y-4 text-xs text-slate-900">
+                    <div class="border-b border-slate-200 pb-2">
+                        <span class="text-[10px] font-bold uppercase bg-slate-100 px-2 py-0.5 rounded border border-slate-300">${project.category.toUpperCase()}</span>
+                        <h2 class="text-xl font-bold mt-2">${project.title}</h2>
+                        <p class="text-slate-500 mt-0.5">Timeline: ${project.timeline}</p>
+                    </div>
+
+                    <div class="p-2.5 bg-slate-100 font-mono rounded border border-slate-300 text-[11px]">
+                        <strong>Tech Stack:</strong> ${project.tech}
+                    </div>
+
+                    <div class="space-y-2 pt-1">
+                        <div class="p-3 bg-slate-50 border border-slate-300 rounded-lg">
+                            <strong class="block text-slate-900 mb-1">PROBLEM (P):</strong>
+                            <p class="text-slate-700 leading-relaxed">${project.ptrl.problem}</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 border border-slate-300 rounded-lg">
+                            <strong class="block text-slate-900 mb-1">TECHNOLOGY (T):</strong>
+                            <p class="text-slate-700 leading-relaxed">${project.ptrl.tech}</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 border border-slate-300 rounded-lg">
+                            <strong class="block text-slate-900 mb-1">RESULT (R):</strong>
+                            <p class="text-slate-700 leading-relaxed">${project.ptrl.result}</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 border border-slate-300 rounded-lg">
+                            <strong class="block text-slate-900 mb-1">LEARNING (L):</strong>
+                            <p class="text-slate-700 leading-relaxed">${project.ptrl.learning}</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 flex justify-end gap-2 border-t border-slate-200">
+                        <a href="${project.github}" target="_blank" class="px-3 py-1.5 bg-slate-900 text-white font-bold rounded text-xs">View Code</a>
+                        <button onclick="closeProjectModal()" class="px-3 py-1.5 bg-slate-200 text-slate-800 font-bold rounded text-xs">Close</button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // Form Submit Simulation
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('formFeedback').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('senderName').value = '';
+                document.getElementById('senderEmail').value = '';
+                document.getElementById('senderMsg').value = '';
+            }, 1000);
+        }
+
+        // Initialize Charts with High-Contrast Plain Palette
+        function initCharts() {
+            // 1. Skill Proficiency Chart
+            const ctxSkills = document.getElementById('skillsChart').getContext('2d');
+            new Chart(ctxSkills, {
+                type: 'bar',
+                data: {
+                    labels: ['C++', 'Python', 'TensorFlow', 'PyTorch', 'Arduino', 'C Programming'],
+                    datasets: [{
+                        label: 'Competency (%)',
+                        data: [90, 88, 80, 78, 82, 82],
+                        backgroundColor: '#1e293b',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { max: 100, ticks: { font: { size: 10 } } },
+                        y: { ticks: { font: { size: 10, weight: 'bold' } } }
+                    }
+                }
+            });
+
+            // 2. Coding Problem Solving Doughnut Chart
+            const ctxCoding = document.getElementById('codingChart').getContext('2d');
+            new Chart(ctxCoding, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Arrays & Strings', 'Trees & Graphs', 'Dynamic Programming', 'Search & Sort', 'Other Topics'],
+                    datasets: [{
+                        data: [70, 45, 35, 30, 20],
+                        backgroundColor: [
+                            '#0f172a',
+                            '#334155',
+                            '#475569',
+                            '#64748b',
+                            '#94a3b8'
+                        ],
+                        borderWidth: 1,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: { font: { size: 11 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderSkills('all');
+            renderProjects('all');
+            initCharts();
+        });
+    </script>
+</body>
+</html>
